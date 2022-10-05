@@ -1,0 +1,70 @@
+body {
+    background-color: hsl(24, 32%, 69%);
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: black;
+    height: 40px;
+}
+.nav-a {
+    color: white;
+}
+.gallery {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+    margin-top: 40px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    border-style: solid;
+    border-radius: 20%;
+    padding: 20px;
+}
+.card:hover {
+    border-color: white;
+}
+img {
+    width: 140px;
+    height: 140px;
+}
+.searchbar-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+.searchbar-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 400px;
+}
+.searchbar-btn {
+    margin-right: 5px;
+
+}
+.clear-search {
+    align-self: flex-end;
+}
+.detail-photo {
+    height: 130px;
+    width: 130px;
+}
+.home-album-picture {
+    height: 125px;
+    width: 125px;
+}
+.dropdown {
+    visibility: hidden;
+}

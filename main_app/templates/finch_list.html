@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Finch List{% endblock %}
+{% block content %}
+<h1>{{header}}</h1>
+<div class="searchbar-container">
+    <form method="get" class="searchbar-form">
+        <div class="searchbar-text-field">
+            <input class="input" type="text" name="name" placeholder="name" />
+        </div>
+        <div>
+            <input class="searchbar-btn" type="submit" value="Search" />
+        </div>
+        <a href="/finches" class="clear-search">Clear Search</a>
+    </form>
+</div>
+<div class="gallery">
+    {% for finch in finches %}
+    <a href="{% url 'finch_detail' finch.pk %}">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{finch.img}}" alt="{{finch.name}}" />
+            </div>
+            <div class="card-header">
+                <p class="card-header-title">{{finch.name}}</p>
+            </div>
+        </div>
+    </a>
+    {% empty %}
+    <p>No finches available</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="detail-img">
+    <img src="{{finch.img}}" alt="{{finch.name}}" />
+</div>
+<div class="detail-name">
+    <h1>{{finch.name}}</h1>
+</div>
+<div class="detail-bio">
+    <h3>{{finch.bio}}</h3>
+</div>
+<h2>More photos of {{finch.name}}</h2>
+<div class="detail-photos-container">
+    {% for picture in finch.pictures.all %}
+        <img class="detail-photo" src="{{picture.url}}" alt="{{picture.title}}"/> 
+        <button class="add-to-album-btn">Add to Album</button>
+        <div class="dropdown">
+            {% for album in albums %}
+                <a class="dropdown-item" href="{% url 'album_picture_assoc' album.pk picture.pk %}?assoc=add">{{album.title}}</a>
+            {% endfor %}
+        </div>
+    {% empty %}
+        <p>No pictures available...</p>
+    {% endfor %}
+</div>
+<div class="add-picture-container">
+    <form class="add-picture-form" action="{% url 'picture_create' finch.pk %}" method="post">
+        {% csrf_token %}
+        <input class="input" type="text" name="title" placeholder="Title" required />
+        <input class="input" type="text" name="url" placeholder="URL" required /> 
+        <input type="submit" value="Add Photo" />
+    </form>
+</div>
+
+<a href="{% url 'finch_update' finch.pk %}">Update {{finch.name}}</a>
+<a href="{% url 'finch_delete' finch.pk %}">Delete {{finch.name}}</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Finches Home</h1>
+<div class="home-albums">
+    {% for album in albums %}
+        <div class="album-container">
+            <h3>{{album.title}}</h3>
+            {% for picture in album.pictures.all %}
+                <div class="album-picture-container">
+                    <img class="home-album-picture" src="{{picture.url}}" alt="{{picture.title}}" />
+                    <a href="{% url 'album_picture_assoc' album.pk picture.pk %}?assoc=remove">Remove from Album</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% empty %}
+        <p>There are no photos in this album</p>
+    {% endfor %}
+</div>
+{% endblock %}
