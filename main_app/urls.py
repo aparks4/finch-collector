@@ -11,5 +11,6 @@ urlpatterns = [
     path('finches/<int:pk>/delete', views.FinchDelete.as_view(), name="finch_delete"),
     path('finches/<int:pk>/pictures/new/', views.PictureCreate.as_view(), name="picture_create"),
     path('albums/<int:pk>/<int:picture_pk>/', views.AlbumPictureAssoc.as_view(), name="album_picture_assoc"),
-    
+    path('accounts/signup/', views.Signup.as_view(), name="signup"),
+
 ]

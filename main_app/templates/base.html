@@ -14,7 +14,15 @@
         <a class="nav-a" href="/">Home</a>
         <a class="nav-a" href="/finches">Finches</a>
         <a class="nav-a" href="{% url 'finch_create' %}">Add Finch</a>
+        {% if user.is_authenticated %}
+            <span class="nav-a">Welcome: {{user.username}}</span>
+            <a class="nav-a" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a class="nav-a" href="{% url 'login' %}">Login</a>
+            <a class="nav-a" href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
     </nav>
+
 
     {% block content %}{% endblock %}
     
