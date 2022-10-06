@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Finches Home</h1>
+<div class="title-container">
+    <h1>Finch Collector</h1>
+</div>
+{% if user.is_authenticated %}
 <div class="home-albums">
     {% for album in albums %}
         <div class="album-container">
@@ -14,7 +17,8 @@
             {% endfor %}
         </div>
     {% empty %}
-        <p>There are no photos in this album</p>
+        <p>You don't have any albums yet!</p>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock %}

@@ -12,16 +12,15 @@ from django.utils.decorators import method_decorator
 
 
 # Create your views here.
-
+@method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["albums"] = Album.objects.all()
+        context["albums"] = Album.objects.filter(user=self.request.user)
         return context
 
-@method_decorator(login_required, name='dispatch')
 class FinchList(TemplateView):
     template_name = "finch_list.html"
 
@@ -29,11 +28,11 @@ class FinchList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["finches"] = Finch.objects.filter(name__icontains=name, user=self.request.user)
+            context["finches"] = Finch.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}..."
         else:
-            context["finches"] = Finch.objects.filter(user=self.request.user)
-            context["header"] = "Trending Finches"
+            context["finches"] = Finch.objects.all()
+            context["header"] = "Finch List"
         return context
 
 class FinchCreate(CreateView):
@@ -89,14 +88,34 @@ class AlbumPictureAssoc(View):
             Album.objects.get(pk=pk).pictures.add(picture_pk)
         return redirect('home')
 
+class AlbumCreate(CreateView):
+    model = Album
+    fields = ['title', 'pictures']
+    template_name = "album_create.html"
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AlbumCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        print(self.kwargs)
+        return redirect('home')
+
+
+
 class Signup(View):
     # show a form to fill out
     def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    # on form submit, validate the form and login the user
+    def post(self, request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("artist_list")
+            return redirect("/finches")
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)

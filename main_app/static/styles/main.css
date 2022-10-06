@@ -1,5 +1,29 @@
+html {
+    height: 100%;
+}
 body {
-    background-color: hsl(24, 32%, 69%);
+    background-image: url('https://i.imgur.com/kf7LrLX.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* font-family: 'Special Elite', cursive; */
+    font-family: 'Courier Prime', monospace;
+    /* font-family: 'Cutive Mono', monospace; */
+}
+h1 {
+    color: lavender;
+    font-family: 'Cutive Mono', monospace;
+}
+.title-container {
+    background-color:rgb(21, 27, 25);
+    height: 60px;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-color: rgb(44, 56, 53);
 }
 a {
     text-decoration: none;
@@ -10,11 +34,12 @@ nav {
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    background-color: black;
+    background-color: rgb(44, 56, 53);
     height: 40px;
+    margin-top: 0;
 }
 .nav-a {
-    color: white;
+    color: lavender;
 }
 .gallery {
     display: flex;
@@ -27,17 +52,25 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 20vh;
-    border-style: solid;
-    border-radius: 20%;
-    padding: 20px;
+    height: 170px;
+    width: 150px;
+    border-radius: 15%;
+    padding: 30px;
+    background-color: rgb(123, 124, 91);
+    font-family: 'Cutive Mono', monospace;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
 }
 .card:hover {
-    border-color: white;
+    border-style: solid;
+    border-color: lavender;
+    color: lavender;
 }
 img {
     width: 140px;
     height: 140px;
+    margin: 0;
 }
 .searchbar-container {
     display: flex;
@@ -68,3 +101,31 @@ img {
 .dropdown {
     visibility: hidden;
 }
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+.create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(123, 124, 91);
+    padding: 40px;
+    width: 550px;
+    position: center;
+    border-radius: 15%;
+    font-weight: bold;
+    font-size: 17px;
+    border-style: solid;
+    border-color: rgb(44, 56, 53);
+}
+input {
+    background-color: lavender;
+    font-family: 'Cutive Mono', monospace;
+    font-weight: bold;
+}
+

@@ -28,6 +28,7 @@ class Album(models.Model):
 
     title = models.CharField(max_length=150)
     pictures = models.ManyToManyField(Picture)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.title
